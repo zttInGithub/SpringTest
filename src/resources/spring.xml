@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--
+    xmlns 即 xml namespace xml 使用的命名空间
+    xmlns:xsi 即 xml schema instance xml 遵守的具体规范
+    xsi:schemaLocation 本文档 xml 遵守的规范 官方指定
+    -->
+    <!--<bean id="helloService" class="com.ztt.service.HelloService"></bean>
+
+    <bean id="customerService" class="com.ztt.service.impl.CustomerServiceImpl"></bean>
+
+    <bean id="loggerUtils" class="com.ztt.Utils.LoggerUtils"></bean>-->
+
+    <!--告知spring，在创建容器时要扫描的包-->
+    <!--<context:component-scan base-package="com.ztt">
+    </context:component-scan>-->
+
+    <!--配置数据源 -->
+    <!--<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql:///ssmTest"/>
+        <property name="user" value="root"></property>
+        <property name="password" value="root"></property>
+    </bean>-->
+
+<!--xml+注解配置方式-->
+    <!-- 配置一个数据库的操作模板：jdbcTemplate-->
+   <!-- <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>-->
+
+
+    <!--配置一个事务管理器-->
+    <!--<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        &lt;!&ndash;注入DataSource&ndash;&gt;
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    &lt;!&ndash;开启注解扫描&ndash;&gt;
+    &lt;!&ndash;<context:annotation-config/>&ndash;&gt;
+
+    &lt;!&ndash;开启spring事务对注解的支持 &ndash;&gt;
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    &lt;!&ndash;AOP配置事务&ndash;&gt;
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice>
+
+    &lt;!&ndash;AOP切面配置&ndash;&gt;
+    <aop:config>
+        <aop:pointcut id="pointcut" expression="execution(* com.ztt.service.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
+    </aop:config>-->
+
+<!--xml配置方式-->
+        <!--配置dao -->
+        <!--<bean id="accountDao" class="com.ztt.dao.impl.AccountDaoImpl">
+            &lt;!&ndash;注入jdbcTemplate&ndash;&gt;
+            <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+        </bean>
+
+        &lt;!&ndash;配置service &ndash;&gt;
+        <bean id="accountService" class="com.ztt.service.impl.AccountServiceImpl">
+            &lt;!&ndash;注入dao &ndash;&gt;
+            <property name="accountDao" ref="accountDao"></property>
+        </bean>
+
+
+        &lt;!&ndash;&lt;!&ndash; 配置dao&ndash;&gt;
+        <bean id="userDao" class="com.ztt.dao.impl.UserDaoImpl">
+            &lt;!&ndash;注入jdbcTemplate &ndash;&gt;
+            <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+        </bean>
+        &lt;!&ndash; 配置dao&ndash;&gt;
+        <bean id="userDao2" class="com.ztt.dao.impl.UserDaoImpl">
+            &lt;!&ndash;注入jdbcTemplate &ndash;&gt;
+            <property name="jdbcTemplate" ref="jdbcTemplate"></property>
+        </bean>&ndash;&gt;
+
+        &lt;!&ndash;配置一个事务管理器 &ndash;&gt;
+        <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+            &lt;!&ndash;注入DataSource &ndash;&gt;
+            <property name="dataSource" ref="dataSource"></property>
+        </bean>
+
+        &lt;!&ndash;配置事务的通知引用事务管理器 &ndash;&gt;
+        <tx:advice id="txAdvice" transaction-manager="transactionManager">
+           &lt;!&ndash;配置事务的属性 &ndash;&gt;
+           <tx:attributes>
+               <tx:method name="*"/>
+           </tx:attributes>
+        </tx:advice>
+        &lt;!&ndash; aop的通知&ndash;&gt;
+        <aop:config>
+            &lt;!&ndash;配置切面
+                id:给切面提供唯一的标识
+                ref：引用的是通知类的bean的id
+             &ndash;&gt;
+            <aop:pointcut expression="execution(* com.ztt.service.*.*(..))" id="pointcut"/>
+
+            &lt;!&ndash;配置切入点表达式和事务通知的对应关系 &ndash;&gt;
+            <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
+        </aop:config>-->
+
+</beans>
